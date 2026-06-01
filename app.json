@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "plugins": [
+      "expo-router",
+      "@react-native-community/datetimepicker",
+      "expo-font"
+    ],
+    "name": "watering_app",
+    "slug": "watering_app"
+  }
+}

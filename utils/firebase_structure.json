@@ -1,0 +1,70 @@
+{
+    "rules": {
+        "_todo": "not implemented. add rules for read/write"
+    },
+
+    "tanks": {
+        "0": {
+            "name": "Outside Tank",
+            "filledMl": 600,
+            "capacityMl": 800,
+            "_todo": "potentially add calibration data",
+            "levelHistory": {
+                "0": 800,
+                "7": 600
+            }
+        }
+    },
+
+    "plants": {
+        "0": {
+            "name": "Fern",
+            "moisture": 35,
+            "frequency": 7,
+            "volumeMl": 600,
+            "lastWateredTimestamp": 1748732444,
+            "lastWateredVolume": 500,
+            "pumpSpeed": 10,
+            "tank": 0,
+            "moistureHistory": {
+                "0": 20,
+                "7": 35
+            }
+        }
+    },
+
+    "waterLogs": {
+        "0": {
+            "id": 0,
+            "volumeMl": 600,
+            "timestamp": 1748732444,
+            "_todo": "display name of plant on tank log in app"
+        }
+    },
+
+    "settings": {
+        "waterTime": "12:30",
+        "emergencyMode": false
+    },
+
+    "requests": {
+        "0": {
+            "plant": 0,
+            "volumeMl": 600,
+            "pumping": false
+        }
+    },
+
+    "notifications": {
+        "0": {
+            "type": "lowMoisture",
+            "value": 10
+        }
+    },
+
+    "errors": {
+        "0": {
+            "message": "This is a test error"
+        }
+    }
+}

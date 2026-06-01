@@ -1,0 +1,59 @@
+between tanks and filters will be settings and killswitch:
+    settings:                                                       DONE
+        change time of watering                                     DONE
+    killswitch:
+        stops the entire operation
+        popup with confirmation                                     DONE
+        when active there should be a visual cue like a border      DONE
+        disable manual pumping                                      
+
+sometimes there will be error prompts:                          DONE
+    client is offline
+    arduino is offline
+    error in db logs
+    other errors
+
+tanks:                                                          DONE
+    horizontally scrollable cards                               DONE
+    water level displayed as wavy water                         DONE
+    above the water basic tank info                             DONE
+    upon click popup:                                           DONE
+        refill prediction                                       DONE    
+        at the top rename prompt                                DONE
+        below, a selector with options: plants | history        DONE
+        plants tab:                                             DONE
+            get plants that use that tank (usage statistics)    DONE
+        history tab:                                            DONE
+            chart with fill levels                              DONE                        
+            water logs                                          DONE
+
+plants:                                                         DONE
+    vertically scrollable plant cards                           DONE
+    maybe a filter for which tank it uses?                      DONE
+    basic plant info                                            DONE
+    upon click popup:                                           DONE
+        at the top show next scheduled pump                     DONE
+        below, a selector with options: settings | history      DONE
+            settings:                                           DONE
+                rename plant                                    DONE
+                change frequency                                DONE
+                change volume                                   DONE
+            history:                                            DONE
+                show moisture chart                             DONE
+                show water logs                                 DONE
+    pump manually button:                                       DONE
+        opens a popup                                           DONE
+        specify volume                                          DONE
+        pump                                                    DONE
+        show progress bar                                       DONE
+        
+other:
+    a logo
+    a splash screen
+    refreshability
+    error handling
+    notifications:
+        use emojis
+        low moisture
+        low tank level
+    error logging in app and in db

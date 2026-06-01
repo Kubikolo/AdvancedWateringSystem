@@ -1,0 +1,42 @@
+Client:
+    POST:
+        modify plant info
+        modify tank info
+        request pump
+    GET:
+        moisture
+        fill levels
+        fetch all data to display
+        notifications
+        current pump data
+    non-server:
+        plants:
+            display plant info
+            display plant moisutre chart
+            display plant water history with next pump date
+            rename plant
+            change plant parameters
+            push notification for low moisture levels
+            pump manually with progress bar
+        tanks:
+            display tank info
+            display tank water usage chart
+            display tank water usage history (with expandable section to display plants)
+            display plants using tank
+            display tank empty prediction
+        other:
+            input validation
+
+Arduino:
+    POST:
+        responses to requests
+        moisture data
+        fill levels
+        pump data
+    GET:
+        receive request
+    non-server:
+        pump for x time
+        pump on demand
+        pump automatically (rtc)
+        
