@@ -6,32 +6,91 @@ import {
   Pressable
 } from 'react-native';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { styles, SPACING, COLORS } from '../../styles/global';
 import TwoOptionToggle from '../TwoOptionToggleTest';
+import mqtt from 'mqtt';
 
 const PlantSettings = ({ visible, plant, onClose, onSave }) => {
 
     const [name, setName] = useState('');
     const [frequency, setFrequency] = useState('');
-    const [volumeMl, setVolumeMl] = useState('');
+    const [wateringDuration, setWateringDuration] = useState('');
+    const clientRef = useRef(null);
+
+    const brokerUrl = 'url';
+    const mqttOptions = {
+        username: 'username',
+        password: 'password',
+        clientId: `rn_app_${Math.random().toString(16).substring(2, 10)}`,
+    };
+
+    useEffect(() => {
+        if (visible) {
+            console.log('Connecting to HiveMQ Cloud via WebSockets...');
+            const client = mqtt.connect(brokerUrl, mqttOptions);
+            clientRef.current = client;
+
+            client.on('connect', () => {
+                console.log('React Native successfully connected to HiveMQ!');
+            });
+
+            client.on('error', (err) => {
+                console.error('HiveMQ Connection Error:', err);
+            });
+
+            return () => {
+                if (clientRef.current) {
+                    clientRef.current.end();
+                    console.log('Disconnected from HiveMQ');
+                }
+            };
+        }
+    }, [visible]);
 
     useEffect(() => {
       if (plant) {
         setName(plant.name);
         setFrequency(String(plant.frequency));
-        setVolumeMl(String(plant.volumeMl));
+        setWateringDuration(String(plant.wateringDuration));
       }
     }, [plant]);
     
     const handleSave = () => {
+
         const updatedPlant = {
             ...plant,
             name: name.trim() || plant.name,
             frequency: parseInt(frequency),
-            volumeMl: parseInt(volumeMl),
+            wateringDuration: parseInt(wateringDuration),
         };
         onSave(updatedPlant);
+        // publish to mq
+        const parsedFrequencyDays = parseInt(frequency) || 0;
+        const parsedDurationSeconds = parseInt(wateringDuration) || 0;
+
+        const periodSeconds = parsedFrequencyDays * 24 * 60 * 60;
+
+        const mqttPayload = {
+            period_seconds: periodSeconds,
+            duration_seconds: parsedDurationSeconds
+        };
+
+        if (clientRef.current && clientRef.current.connected) {
+            const topic = 'garden/plant1/settings';
+            clientRef.current.publish(
+                topic, 
+                JSON.stringify(mqttPayload), 
+                { qos: 1 }, 
+                (err) => {
+                    if (err) console.error('Failed to publish settings changes:', err);
+                    else console.log('Successfully updated ESP32 configuration via HiveMQ:', mqttPayload);
+                }
+            );
+        } else {
+            console.warn('Unable to sync changes: MQTT client is currently offline.');
+        }
+
         onClose();
     };
 
@@ -59,13 +118,13 @@ const PlantSettings = ({ visible, plant, onClose, onSave }) => {
             />
 
             <Text style={[styles.label, { marginTop: SPACING.md }]}>
-                Water Volume Per Pump (ml)
+                Pumping Duration (s)
             </Text>
             <TextInput
                 style={styles.input}
                 keyboardType="numeric"
-                value={volumeMl}
-                onChangeText={setVolumeMl}
+                value={wateringDuration}
+                onChangeText={setWateringDuration}
             />
 
             <View style={styles.buttonRow}>

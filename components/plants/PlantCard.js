@@ -22,10 +22,10 @@ const PlantCard = ({ plant, onCardPress, onPumpPress, emergency }) => {
                 <Text style={styles.infoValue}>{TANKS.find(t => t.id === plant.tank).name}</Text>
             </View>
 
-            <View style={styles.infoRow}>
+            {/* <View style={styles.infoRow}>
                 <Text style={styles.infoLabel}>Moisture:</Text>
                 <Text style={[styles.infoValue, { color: moistureColor }]}>{plant.moisture}%</Text>
-            </View>
+            </View> */}
 
             <View style={styles.infoRow}>
                 <Text style={styles.infoLabel}>Water every:</Text>
@@ -35,8 +35,8 @@ const PlantCard = ({ plant, onCardPress, onPumpPress, emergency }) => {
             </View>
 
             <View style={styles.infoRow}>
-                <Text style={styles.infoLabel}>Volume:</Text>
-                <Text style={[styles.infoValue, { fontWeight: 'bold' }]}>{plant.volumeMl} ml</Text>
+                <Text style={styles.infoLabel}>Duration:</Text>
+                <Text style={[styles.infoValue, { fontWeight: 'bold' }]}>{plant.wateringDuration} s</Text>
             </View>
 
             <Pressable

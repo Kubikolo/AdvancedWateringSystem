@@ -12,7 +12,7 @@ export const PLANTS = [
     name: 'Fiskus', 
     moisture: 35, 
     frequency: 2, 
-    volumeMl: 600, 
+    wateringDuration: 10, 
     lastWateredDate: 1748376178,
     lastWateredVolume: 500,
     nextWaterDate: 1748980978, // 4 czerwca
@@ -20,31 +20,31 @@ export const PLANTS = [
     tank: 1,
   },
 
-  { 
-    id: 2, 
-    name: 'Monstera',
-    moisture: 70, 
-    frequency: 5,
-    volumeMl: 500, 
-    lastWateredDate: 1748203378, 
-    lastWateredVolume: 500,
-    nextWaterDate: 1748808178, //2 czerwca
-    pumpSpeed: 12,
-    tank: 1,
-  },
+  // { 
+  //   id: 2, 
+  //   name: 'Monstera',
+  //   moisture: 70, 
+  //   frequency: 5,
+  //   volumeMl: 500, 
+  //   lastWateredDate: 1748203378, 
+  //   lastWateredVolume: 500,
+  //   nextWaterDate: 1748808178, //2 czerwca
+  //   pumpSpeed: 12,
+  //   tank: 1,
+  // },
 
-  { 
-    id: 3, 
-    name: 'Maluszek', 
-    moisture: 50, 
-    frequency: 3,
-    volumeMl: 400, 
-    lastWateredDate: 1748548978, 
-    lastWateredVolume: 400,
-    nextWaterDate: 1748894578, // 3 czerwca
-    pumpSpeed: 18,
-    tank: 2,
-  }
+  // { 
+  //   id: 3, 
+  //   name: 'Maluszek', 
+  //   moisture: 50, 
+  //   frequency: 3,
+  //   volumeMl: 400, 
+  //   lastWateredDate: 1748548978, 
+  //   lastWateredVolume: 400,
+  //   nextWaterDate: 1748894578, // 3 czerwca
+  //   pumpSpeed: 18,
+  //   tank: 2,
+  // }
 ];
 
 export const LOGS = [

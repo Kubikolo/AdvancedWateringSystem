@@ -32,13 +32,13 @@ const PlantModal = ({ visible, plant, onClose, onSave }) => {
                         Plant #{plant.id}
                     </Text>
 
-                    <Text style={styles.infoLabel}>
+                    {/* <Text style={styles.infoLabel}>
                         Next scheduled pump:
                     </Text>
 
                     <Text style={styles.infoValue}>
                         01.06.2025 12:30
-                    </Text>
+                    </Text> */}
 
                     <TwoOptionToggle
                         optionA="Settings"

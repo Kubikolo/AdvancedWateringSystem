@@ -11,6 +11,7 @@ import TankModal from '../components/tanks/TankModal';
 import ConfirmationModal from '../components/otherModals/ConfirmationModal';
 import GeneralSettingsModal from '../components/otherModals/GeneralSettingsModal';
 import ErrorCard from '../components/ErrorCard';
+import { SafeAreaView, StatusBar } from 'react-native';
 
 const HomeScreen = () => {
   const [plants, setPlants] = useState(PLANTS);
@@ -106,13 +107,20 @@ const HomeScreen = () => {
   };
 
   return (
+    <SafeAreaView 
+    style={[
+      styles.container, 
+      emergencyMode && styles.emergency, 
+      { paddingTop: StatusBar.currentHeight }
+    ]}
+  >
     <View style={[styles.container, emergencyMode && styles.emergency]}>
 
-      <View style={{paddingHorizontal: SPACING.md }}>
+      {/* <View style={{paddingHorizontal: SPACING.md }}>
         <ErrorCard/>
-      </View>
+      </View> */}
       
-      <ScrollView
+      {/* <ScrollView
         horizontal
         pagingEnabled
         showsHorizontalScrollIndicator={false}
@@ -121,27 +129,27 @@ const HomeScreen = () => {
         {TANKS.map((tank) => (
           <TankItem key={tank.id} tank={tank} onCardPress={handleTankOpenSettings}/>
         ))}
-      </ScrollView>
-
-      <View style={{ flexDirection: 'row', paddingHorizontal: SPACING.md }}>
+      </ScrollView> */}
+      
+      <View style={{ flexDirection: 'row', paddingHorizontal: SPACING.md, paddingBottom: SPACING.md }}>
         <Pressable style={[styles.buttonPrimary, {flex: 1, marginRight: SPACING.sm}]} onPress={handleOpenSettingsModal}>
           <Text style={[styles.middleBarText, {color: COLORS.white}]}>
             Settings
           </Text>
         </Pressable>
-        <Pressable style={styles.buttonCancel} onPress={handleOpenConfirmationModal}>
+        {/* <Pressable style={styles.buttonCancel} onPress={handleOpenConfirmationModal}>
           <Text style={styles.middleBarText}>
             KILLSWITCH
           </Text>
-        </Pressable>
+        </Pressable> */}
       </View>
-
+{/* 
       <View style={{ marginTop: SPACING.md , marginBottom: SPACING.md}} >
         <FilterBar
           initialFilters={filters}
           onSelectionChange={handleFiltersChange}
         />
-      </View>
+      </View> */}
 
       <FlatList
         data={plants.filter((plant) => filteredTanks.includes(plant.tank))}
@@ -193,6 +201,7 @@ const HomeScreen = () => {
         onSave={handleSaveSettingsModal}
       />
     </View>
+    </SafeAreaView>
   );
 };
 
